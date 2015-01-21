@@ -30,7 +30,7 @@ USER="kef:users"
 
 autosub_backup ()
 {
-    if [ -d ${AUTOSUB} ] 
+    if [ -d ${AUTOSUB} ]
     then
         mkdir -p ${BACKUP}/AutoSub
         cp ${AUTOSUB}/config.properties ${BACKUP}/AutoSub
@@ -44,7 +44,7 @@ autosub_backup ()
 
 couchpotato_backup ()
 {
-    if [ -d ${COUCHPOTATO} ] 
+    if [ -d ${COUCHPOTATO} ]
     then
         mkdir -p ${BACKUP}/CouchPotato
         cp ${COUCHPOTATO}/config.ini ${BACKUP}/CouchPotato
@@ -57,7 +57,7 @@ couchpotato_backup ()
 
 couchpotatoserver_backup ()
 {
-    if [ -d ${COUCHPOTATOSERVER} ] 
+    if [ -d ${COUCHPOTATOSERVER} ]
     then
         mkdir -p ${BACKUP}/CouchPotatoServer
         cp ${COUCHPOTATOSERVER}/settings.conf ${BACKUP}/CouchPotatoServer
@@ -70,7 +70,7 @@ couchpotatoserver_backup ()
 
 couchpotatoservercustom_backup ()
 {
-    if [ -d ${COUCHPOTATOSERVER} ] 
+    if [ -d ${COUCHPOTATOSERVER} ]
     then
         mkdir -p ${BACKUP}/CouchPotatoServerCustom
         cp ${COUCHPOTATOSERVERCUSTOM}/settings.conf ${BACKUP}/CouchPotatoServerCustom
@@ -83,7 +83,7 @@ couchpotatoservercustom_backup ()
 
 headphones_backup ()
 {
-    if [ -d ${HEADPHONES} ] 
+    if [ -d ${HEADPHONES} ]
     then
         mkdir -p ${BACKUP}/Headphones
         cp ${HEADPHONES}/config.ini ${BACKUP}/Headphones
@@ -96,7 +96,7 @@ headphones_backup ()
 
 maraschino_backup ()
 {
-    if [ -d ${MARASCHINO} ] 
+    if [ -d ${MARASCHINO} ]
     then
         mkdir -p ${BACKUP}/Maraschino
         cp ${MARASCHINO}/maraschino.db ${BACKUP}/Maraschino
@@ -109,7 +109,7 @@ maraschino_backup ()
 
 nzbget_backup ()
 {
-    if [ -d ${NZBGET} ] 
+    if [ -d ${NZBGET} ]
     then
         mkdir -p ${BACKUP}/NZBGet
         cp ${NZBGET}/nzbget.conf ${BACKUP}/NZBGet
@@ -123,7 +123,7 @@ nzbget_backup ()
 
 oscam_backup ()
 {
-    if [ -d ${OSCAM} ] 
+    if [ -d ${OSCAM} ]
     then
         mkdir -p ${BACKUP}/OSCam
         cp ${OSCAM}/oscam.conf ${BACKUP}/OSCam
@@ -135,7 +135,7 @@ oscam_backup ()
 
 ppscripts_backup ()
 {
-    if [ -d ${PPSCRIPTS} ] 
+    if [ -d ${PPSCRIPTS} ]
     then
         mkdir -p ${BACKUP}/PPScripts
         cp -r ${PPSCRIPTS}/* ${BACKUP}/PPScripts
@@ -147,7 +147,7 @@ ppscripts_backup ()
 
 sabnzbd_backup ()
 {
-    if [ -d ${SABNZBD} ] 
+    if [ -d ${SABNZBD} ]
     then
         mkdir -p ${BACKUP}/SABnzbd
         cp ${SABNZBD}/config.ini ${BACKUP}/SABnzbd
@@ -161,7 +161,7 @@ sabnzbd_backup ()
 
 sabnzbdcustom_backup ()
 {
-    if [ -d ${SABNZBDCUSTOM} ] 
+    if [ -d ${SABNZBDCUSTOM} ]
     then
         mkdir -p ${BACKUP}/SABnzbdCustom
         cp ${SABNZBDCUSTOM}/config.ini ${BACKUP}/SABnzbdCustom
@@ -175,7 +175,7 @@ sabnzbdcustom_backup ()
 
 sickbeard_backup ()
 {
-    if [ -d ${SICKBEARD} ] 
+    if [ -d ${SICKBEARD} ]
     then
         mkdir -p ${BACKUP}/SickBeard
         cp ${SICKBEARD}/config.ini ${BACKUP}/SickBeard
@@ -188,7 +188,7 @@ sickbeard_backup ()
 
 sickbeardcustom_backup ()
 {
-    if [ -d ${SICKBEARDCUSTOM} ] 
+    if [ -d ${SICKBEARDCUSTOM} ]
     then
         mkdir -p ${BACKUP}/SickBeardCustom
         cp ${SICKBEARDCUSTOM}/config.ini ${BACKUP}/SickBeardCustom
@@ -201,7 +201,7 @@ sickbeardcustom_backup ()
 
 subliminal_backup ()
 {
-    if [ -d ${SUBLIMINAL} ] 
+    if [ -d ${SUBLIMINAL} ]
     then
         mkdir -p ${BACKUP}/Subliminal
         cp ${SUBLIMINAL}/config.ini ${BACKUP}/Subliminal
@@ -214,7 +214,7 @@ subliminal_backup ()
 
 transmission_backup ()
 {
-    if [ -d ${TRANSMISSION} ] 
+    if [ -d ${TRANSMISSION} ]
     then
         mkdir -p ${BACKUP}/Transmission
         cp ${TRANSMISSION}/settings.json ${BACKUP}/Transmission
@@ -226,7 +226,7 @@ transmission_backup ()
 
 tvheadend_backup ()
 {
-    if [ -d ${TVHEADEND} ] 
+    if [ -d ${TVHEADEND} ]
     then
         mkdir -p ${BACKUP}/Tvheadend
         cp -r ${TVHEADEND}/* ${BACKUP}/Tvheadend
@@ -239,7 +239,7 @@ tvheadend_backup ()
 
 umurmur_backup ()
 {
-    if [ -d ${UMURMUR} ] 
+    if [ -d ${UMURMUR} ]
     then
         mkdir -p ${BACKUP}/uMurmur
         cp ${UMURMUR}/umurmur.conf ${BACKUP}/uMurmur
@@ -251,7 +251,7 @@ umurmur_backup ()
 
 znc_backup ()
 {
-    if [ -d ${ZNC} ] 
+    if [ -d ${ZNC} ]
     then
         mkdir -p ${BACKUP}/ZNC
         cp ${ZNC}/configs/znc.conf ${BACKUP}/ZNC
@@ -302,7 +302,6 @@ case $1 in
                 exit 0
         fi
         ;;
-
 
     headphones)
     if headphones_backup; then
@@ -467,6 +466,13 @@ case $1 in
         echo CouchPotato Server not found ...
     fi
 
+    if couchpotatoservercustom_backup; then
+        echo Backup CouchPotato Server -Custom ...
+        couchpotatoservercustom_backup
+    else
+        echo CouchPotato Server - Custom not found ...
+    fi
+
     if headphones_backup; then
         echo Backup Headphones ...
         headphones_backup
@@ -488,6 +494,13 @@ case $1 in
         echo NZBGet not found ...
     fi
 
+    if ppscripts_backup; then
+        echo Backup Post-Processing Scripts ...
+        ppscrtips_backup
+    else
+        echo Post-Processing Scripts not found ...
+    fi
+
     if oscam_backup; then
         echo Backup OSCam ...
         oscam_backup
@@ -502,11 +515,25 @@ case $1 in
         echo SABnzbd not found ...
     fi
 
+    if sabnzbdcustom_backup; then
+        echo Backup SABnzbd - Custom ...
+        sabnzbdcustom_backup
+    else
+        echo SABnzbd - Custom not found ...
+    fi
+
     if sickbeard_backup; then
         echo Backup SickBeard ...
         sickbeard_backup
     else
         echo SickBeard not found ...
+    fi
+
+    if sickbeardcustom_backup; then
+        echo Backup SickBeard - Custom ...
+        sickbeardcustom_backup
+    else
+        echo SickBeard - Custom not found ...
     fi
 
     if subliminal_backup; then
