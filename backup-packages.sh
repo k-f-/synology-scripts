@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# modified by k-f-
+
 # Backup script for different packages
 # Works with the packages from www.synocommunity.com and www.mdevries.org
 # This script is created by www.mdevries.org
@@ -7,12 +9,16 @@
 AUTOSUB="/usr/local/autosub"
 COUCHPOTATO="/usr/local/couchpotato/var"
 COUCHPOTATOSERVER="/usr/local/couchpotatoserver/var"
+COUCHPOTATOSERVERCUSTOM="/usr/local/couchpotatoserver-custom/var"
 HEADPHONES="/usr/local/headphones/var"
 MARASCHINO="/usr/local/maraschino/var"
 NZBGET="/usr/local/nzbget/var"
 OSCAM="/usr/local/oscam/var"
+PPSCRIPTS="/volume1/PPScripts"
 SABNZBD="/usr/local/sabnzbd/var"
+SABNZBDCUSTOM="/usr/local/sabnzbd-custom/var"
 SICKBEARD="/usr/local/sickbeard/var"
+SICKBEARDCUSTOM="/usr/local/sickbeard-custom/var"
 SUBLIMINAL="/usr/local/subliminal/var"
 TRANSMISSION="/usr/local/transmission/var"
 TVHEADEND="/usr/local/tvheadend/var"
@@ -57,6 +63,19 @@ couchpotatoserver_backup ()
         cp ${COUCHPOTATOSERVER}/settings.conf ${BACKUP}/CouchPotatoServer
         cp ${COUCHPOTATOSERVER}/couchpotato.db ${BACKUP}/CouchPotatoServer
         chown -R ${USER} ${BACKUP}/CouchPotatoServer
+        else
+            return 1
+    fi
+}
+
+couchpotatoservercustom_backup ()
+{
+    if [ -d ${COUCHPOTATOSERVER} ] 
+    then
+        mkdir -p ${BACKUP}/CouchPotatoServerCustom
+        cp ${COUCHPOTATOSERVERCUSTOM}/settings.conf ${BACKUP}/CouchPotatoServerCustom
+        cp ${COUCHPOTATOSERVERCUSTOM}/couchpotato.db ${BACKUP}/CouchPotatoServerCustom
+        chown -R ${USER} ${BACKUP}/CouchPotatoServerCustom
         else
             return 1
     fi
@@ -114,6 +133,18 @@ oscam_backup ()
     fi
 }
 
+ppscripts_backup ()
+{
+    if [ -d ${PPSCRIPTS} ] 
+    then
+        mkdir -p ${BACKUP}/PPScripts
+        cp -r ${PPSCRIPTS}/* ${BACKUP}/PPScripts
+        chown -R ${USER} ${BACKUP}/PPScripts
+        else
+            return 1
+    fi
+}
+
 sabnzbd_backup ()
 {
     if [ -d ${SABNZBD} ] 
@@ -128,6 +159,20 @@ sabnzbd_backup ()
     fi
 }
 
+sabnzbdcustom_backup ()
+{
+    if [ -d ${SABNZBDCUSTOM} ] 
+    then
+        mkdir -p ${BACKUP}/SABnzbdCustom
+        cp ${SABNZBDCUSTOM}/config.ini ${BACKUP}/SABnzbdCustom
+        cp ${SABNZBDCUSTOM}/admin/sabnzbd.crt ${BACKUP}/SABnzbdCustom
+        cp ${SABNZBDCUSTOM}/admin/sabnzbd.key ${BACKUP}/SABnzbdCustom
+        chown -R ${USER} ${BACKUP}/SABnzbdCustom
+        else
+            return 1
+    fi
+}
+
 sickbeard_backup ()
 {
     if [ -d ${SICKBEARD} ] 
@@ -136,6 +181,19 @@ sickbeard_backup ()
         cp ${SICKBEARD}/config.ini ${BACKUP}/SickBeard
         cp ${SICKBEARD}/sickbeard.db ${BACKUP}/SickBeard
         chown -R ${USER} ${BACKUP}/SickBeard
+        else
+            return 1
+    fi
+}
+
+sickbeardcustom_backup ()
+{
+    if [ -d ${SICKBEARDCUSTOM} ] 
+    then
+        mkdir -p ${BACKUP}/SickBeardCustom
+        cp ${SICKBEARDCUSTOM}/config.ini ${BACKUP}/SickBeardCustom
+        cp ${SICKBEARDCUSTOM}/sickbeard.db ${BACKUP}/SickBeardCustom
+        chown -R ${USER} ${BACKUP}/SickBeardCustom
         else
             return 1
     fi
@@ -204,7 +262,6 @@ znc_backup ()
     fi
 }
 
-
 case $1 in
     autosub)
     if autosub_backup; then
@@ -235,6 +292,17 @@ case $1 in
                 exit 0
         fi
         ;;
+
+    couchpotatoservercustom)
+    if couchpotatoservercustom_backup; then
+        echo Backup CouchPotato Server - Custom ...
+        couchpotatoservercustom_backup
+    else
+        echo CouchPotato Server - Custom not found ...
+                exit 0
+        fi
+        ;;
+
 
     headphones)
     if headphones_backup; then
@@ -276,6 +344,26 @@ case $1 in
     fi
     ;;
 
+    ppscripts)
+    if ppscripts_backup; then
+        echo Backup Post-Processing Scripts ...
+        ppscripts_backup
+    else
+        echo Post-Processing Scripts not found ...
+                exit 0
+        fi
+        ;;
+
+    sabnzbdcustom)
+    if sabnzbdcustom_backup; then
+        echo Backup SABnzbd - Custom ...
+        sabnzbdcustom_backup
+    else
+        echo SABnzbd - Custom not found ...
+                exit 0
+        fi
+        ;;
+
     sabnzbd)
     if sabnzbd_backup; then
         echo Backup SABnzbd ...
@@ -295,6 +383,17 @@ case $1 in
                 exit 0
         fi
         ;;
+
+    sickbeardcustom)
+    if sickbeardcustom_backup; then
+        echo Backup SickBeard - Custom ...
+        sickbeardcustom_backup
+    else
+        echo SickBeard - Custom not found ...
+                exit 0
+        fi
+        ;;
+
 
     subliminal)
     if subliminal_backup; then
@@ -447,7 +546,7 @@ case $1 in
     ;;
 
 *)
-    echo "Usage: $0 [all|autosub|couchpotato|couchpotatoserver|headphones|maraschino|nzbget|oscam|sabnzbd|sickbeard|subliminal|transmission|tvheadend|umurmur|znc]"
+    echo "Usage: $0 [all|autosub|couchpotato|couchpotatoserver|couchpotatoservercustom|headphones|maraschino|nzbget|oscam|sabnzbd|sabnzbdcustom|sickbeard|sickbeardcustom|subliminal|transmission|tvheadend|umurmur|znc]"
     exit 1
     ;;
 esac
