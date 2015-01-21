@@ -14,7 +14,7 @@ HEADPHONES="/usr/local/headphones/var"
 MARASCHINO="/usr/local/maraschino/var"
 NZBGET="/usr/local/nzbget/var"
 OSCAM="/usr/local/oscam/var"
-PPSCRIPTS="/volume1/PPScripts"
+PPSCRIPTS="/volume1/@appstore/PPScripts"
 SABNZBD="/usr/local/sabnzbd/var"
 SABNZBDCUSTOM="/usr/local/sabnzbd-custom/var"
 SICKBEARD="/usr/local/sickbeard/var"
@@ -70,7 +70,7 @@ couchpotatoserver_backup ()
 
 couchpotatoservercustom_backup ()
 {
-    if [ -d ${COUCHPOTATOSERVER} ]
+    if [ -d ${COUCHPOTATOSERVERCUSTOM} ]
     then
         mkdir -p ${BACKUP}/CouchPotatoServerCustom
         cp ${COUCHPOTATOSERVERCUSTOM}/settings.conf ${BACKUP}/CouchPotatoServerCustom
