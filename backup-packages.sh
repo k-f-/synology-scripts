@@ -19,8 +19,8 @@ TVHEADEND="/usr/local/tvheadend/var"
 UMURMUR="/usr/local/umurmur/var"
 ZNC="/usr/local/znc/var"
 
-BACKUP="/var/services/homes/martijn/Backup"
-USER="martijn:users"
+BACKUP="/volume1/Backup"
+USER="kef:users"
 
 autosub_backup ()
 {
