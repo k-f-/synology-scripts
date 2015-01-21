@@ -25,7 +25,7 @@ TVHEADEND="/usr/local/tvheadend/var"
 UMURMUR="/usr/local/umurmur/var"
 ZNC="/usr/local/znc/var"
 
-BACKUP="/volume1/Backup"
+BACKUP="/volume1/Backup/SynoCommunityPackages"
 USER="kef:users"
 
 autosub_backup ()
@@ -496,7 +496,7 @@ case $1 in
 
     if ppscripts_backup; then
         echo Backup Post-Processing Scripts ...
-        ppscrtips_backup
+        ppscripts_backup
     else
         echo Post-Processing Scripts not found ...
     fi
